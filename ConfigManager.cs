@@ -19,7 +19,7 @@ namespace JsonConfigManager
             if (File.Exists(_filePath))
                 LoadConfiguration();
             else
-                SaveConfiguration();
+                Save();
         }
 
         public void Save()
