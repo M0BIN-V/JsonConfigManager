@@ -22,7 +22,7 @@ namespace JsonConfigManager
                 SaveConfiguration();
         }
 
-        public void SaveConfiguration()
+        public void Save()
         {
             var jsonConfig = JsonConvert
                             .SerializeObject(_config, Formatting.Indented);
