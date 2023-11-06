@@ -4,6 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Json config manager</Title>
+    <Description>Save and manage json application configuration</Description>
+    <FileVersion>1.0.0.1</FileVersion>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
