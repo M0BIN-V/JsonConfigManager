@@ -2,13 +2,13 @@
 
 namespace JsonConfigManager
 {
-    public class ConfigManager<TConfig>
+    public class JsonConfigManager<TConfig>
     {
         public string FilePath { get; }
         public TConfig? Config { get => _config; }
         TConfig? _config;
 
-        public ConfigManager(string? filePath = null)
+        public JsonConfigManager(string? filePath = null)
         {
             if (filePath is null) FilePath = "Config.json";
             else FilePath = filePath;
