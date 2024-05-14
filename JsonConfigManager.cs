@@ -1,30 +1,36 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
-namespace JsonConfigManager
+namespace JsonConfigManager;
+
+public class JsonConfigManager<TConfig> where TConfig : class
 {
-    public class JsonConfigManager<TConfig>
+    public string FilePath { get; }
+    public TConfig? Config
     {
-        public string FilePath { get; }
-        public TConfig? Config
+        get
         {
-            get
+            try
             {
                 var jsonConfig = File.ReadAllText(FilePath);
-                return JsonConvert.DeserializeObject<TConfig>(jsonConfig);
+                return JsonSerializer.Deserialize<TConfig>(jsonConfig);
+            }
+            catch (JsonException)
+            {
+                return null;
             }
         }
+    }
 
-        public JsonConfigManager(string? filePath = null)
-        {
-            if (filePath is null) FilePath = "Config.json";
-            else FilePath = filePath;
-        }
+    public JsonConfigManager(string? filePath = null)
+    {
+        if (filePath is null) FilePath = "Config.json";
+        else FilePath = filePath;
+    }
 
-        public void Save(TConfig config)
-        {
-            var jsonConfig = JsonConvert.SerializeObject(config, Formatting.Indented);
+    public void Save(TConfig config)
+    {
+        var jsonConfig = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
 
-            File.WriteAllText(FilePath, jsonConfig);
-        }
+        File.WriteAllText(FilePath, jsonConfig);
     }
 }
