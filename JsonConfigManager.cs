@@ -14,7 +14,7 @@ public class JsonConfigManager<TConfig> where TConfig : class
                 var jsonConfig = File.ReadAllText(FilePath);
                 return JsonSerializer.Deserialize<TConfig>(jsonConfig);
             }
-            catch (JsonException)
+            catch
             {
                 return null;
             }
